@@ -3,6 +3,7 @@ import constants
 from game.casting.cast import Cast
 from game.casting.score import Score
 from game.casting.snake import Snake
+from game.casting.player2 import Player2
 from game.scripting.script import Script
 from game.scripting.control_actors_action import ControlActorsAction
 from game.scripting.move_actors_action import MoveActorsAction
@@ -14,15 +15,16 @@ from game.services.video_service import VideoService
 from game.shared.color import Color
 from game.shared.point import Point
 from game.scripting.grow import Grow
+from game.casting.score2 import Score2
 
 def main():
     
     # create the cast
     cast = Cast()
-    # cast.add_actor("foods", Food())
-    cast.add_actor("snakes", Snake(100, 100))
-    cast.add_actor("snakes", Snake(200, 200))
+    cast.add_actor("snakes", Snake())
     cast.add_actor("scores", Score())
+    cast.add_actor("player2", Player2())
+    cast.add_actor('score2', Score2())
    
     # start the game
     keyboard_service = KeyboardService()
@@ -32,8 +34,8 @@ def main():
     script.add_action("input", ControlActorsAction(keyboard_service))
     script.add_action("update", MoveActorsAction())
     script.add_action("update", HandleCollisionsAction())
-    script.add_action("update", Grow ())
     script.add_action("output", DrawActorsAction(video_service))
+    script.add_action("update", Grow())
     
     director = Director(video_service)
     director.start_game(cast, script)

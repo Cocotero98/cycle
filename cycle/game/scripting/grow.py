@@ -1,23 +1,18 @@
+from pickle import TRUE
 from game.scripting.action import Action
+import constants
 
-class Grow (Action):
+class Grow(Action):
 
-    def execute (self, cast, script):
-        """Snake grows. Make it execute less times. It is growing exponentially right now. 
-        
-        Args:
-            cast (Cast): The cast of Actors in the game.
-        """
-        score = cast.get_first_actor("scores")
-        # score = cast.get_second_actor("scores") pending add to main
+    def __init__(self):
+        self._add=True
+
+    def execute(self, cast, script):
         snake = cast.get_first_actor("snakes")
-        snake_2 = cast.get_first_actor("snakes")
-        head = snake.get_head()
-
-        snake.grow_tail (1)
-        snake_2.grow_tail (1)
-
-        # if head.get_position().equals(food.get_position()):
-        #     snake.grow_tail(points)
-        #     score.add_points(points)
-        #     food.reset()
+        player2 = cast.get_first_actor("player2")
+        if self._add:
+            snake.grow_tail(1,constants.GREEN)
+            player2.grow_tail(1,constants.BLUE)
+            self._add=False
+        else:
+            self._add=True
