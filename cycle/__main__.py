@@ -37,6 +37,7 @@ def main():
     script.add_action("output", DrawActorsAction(video_service))
     script.add_action("update", Grow())
     
+    
     director = Director(video_service)
     director.start_game(cast, script)
 

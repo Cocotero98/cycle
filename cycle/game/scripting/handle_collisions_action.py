@@ -1,4 +1,7 @@
+from turtle import update
 import constants
+from game.scripting.script import Script
+from game.scripting.grow import Grow
 from game.casting.actor import Actor
 from game.scripting.action import Action
 from game.shared.point import Point
@@ -27,7 +30,8 @@ class HandleCollisionsAction(Action):
         """
         if not self._is_game_over:
             self._handle_segment_collision(cast)
-            self._handle_game_over(cast)
+            self._handle_game_over(cast, script)
+            
 
     
     def _handle_segment_collision(self, cast):
@@ -49,7 +53,9 @@ class HandleCollisionsAction(Action):
         for segment in segments2:
             if head.get_position().equals(segment.get_position()) or head2.get_position().equals(segment.get_position()):
                 self._is_game_over = True
-    def _handle_game_over(self, cast):
+
+        
+    def _handle_game_over(self, cast, script):
         """Shows the 'game over' message and turns the snake and food white if the game is over.
         
         Args:
@@ -69,6 +75,7 @@ class HandleCollisionsAction(Action):
             message.set_text("Game Over!")
             message.set_position(position)
             cast.add_actor("messages", message)
+            script.remove_action ("update", script.get_actions ("update")[2] ) 
 
             for segment in segments:
                 segment.set_color(constants.WHITE)
