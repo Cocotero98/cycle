@@ -32,5 +32,20 @@ root                    (project root folder)
 * Raylib Python CFFI 3.7
 
 ## Authors
+Michelle Farr (mrecancun@hotmail.com), Bryce Hiroshi Williams, 
+Nilo Urmeneta(urmenetanilo@gmail.com), peter otim (Petercharlesotim@gmail.com), Agustin Aguilar (aguilarag98@gmail.com)
+
+
+Contributors
+code write ; Agustin
+scores update after collision - Nilo
+remove white and make it restarted after collision: Michelle Farr, Peter otim
+game restart : Bryce
 ---
-* TODO: Add your name and email here
+comments: ALL group members made comments
+* TODO: Add your name and email here: otim peter petercharlesotim@gmail.com
+
+
+
+
+
