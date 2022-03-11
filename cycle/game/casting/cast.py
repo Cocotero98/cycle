@@ -73,3 +73,7 @@ class Cast:
         """
         if group in self._actors:
             self._actors[group].remove(actor)
+    
+    def clear_group(self, group):
+        if group in self._actors:
+            self._actors.popitem()

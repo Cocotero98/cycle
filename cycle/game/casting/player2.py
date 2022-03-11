@@ -37,3 +37,5 @@ class Player2(Snake):
             segment.set_text(text)
             segment.set_color(color)
             self._segments.append(segment)
+    def clear_segments(self):
+        return super().clear_segments()
