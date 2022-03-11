@@ -7,7 +7,7 @@ from game.scripting.action import Action
 from game.shared.point import Point
 from game.casting.score import Score
 from game.casting.score2 import Score2
-from game.services.video_service import VideoService
+from game.services.keyboard_service import KeyboardService
 from game.casting.cast import Cast
 from game.casting.snake import Snake
 
@@ -52,38 +52,42 @@ class HandleCollisionsAction(Action):
         segments2 =player2.get_segments()[1:]
         score1=cast.get_first_actor("scores")
         score2=cast.get_first_actor("score2")
-        for segment in segments:
-            if head.get_position().equals(segment.get_position()):
-                # self._is_game_over = True
-                score2.add_points(1)
-                snake.clear_segments()
-                snake._prepare_body()
-                player2.clear_segments()
-                player2._prepare_body()
+        # for segment in segments:
+        #     if head.get_position().equals(segment.get_position()):
+        #         self._is_game_over = True
+        #         score2.add_points(1)
+        #         snake.clear_segments()
+        #         snake._prepare_body()
+        #         player2.clear_segments()
+        #         player2._prepare_body()
+                
         for segment in segments:
             if head2.get_position().equals(segment.get_position()):
-                # self._is_game_over = True
+                self._is_game_over = True
                 score1.add_points(1)
                 snake.clear_segments()
                 snake._prepare_body()
                 player2.clear_segments()
                 player2._prepare_body()
+                
         for segment in segments2:
-            if head2.get_position().equals(segment.get_position()):
-                # self._is_game_over = True
-                score1.add_points(1)
-                snake.clear_segments()
-                snake._prepare_body()
-                player2.clear_segments()
-                player2._prepare_body()
+        #     if head2.get_position().equals(segment.get_position()):
+        #         self._is_game_over = True
+        #         score1.add_points(1)
+        #         snake.clear_segments()
+        #         snake._prepare_body()
+        #         player2.clear_segments()
+        #         player2._prepare_body()
+                
             if head.get_position().equals(segment.get_position()):
-                # self._is_game_over = True
+                self._is_game_over = True 
                 score2.add_points(1)
                 snake.clear_segments()
                 snake._prepare_body()
                 player2.clear_segments()
                 player2._prepare_body()
-        
+                       
+
     def _handle_game_over(self, cast, script):
         """Shows the 'game over' message and turns the snake and food white if the game is over.
         
