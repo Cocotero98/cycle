@@ -109,7 +109,8 @@ class HandleCollisionsAction(Action):
             message.set_position(position)
             cast.add_actor("messages", message)
             script.remove_action ("update", script.get_actions ("update")[2] ) 
-
+            
+            """makes the color of the snakes white"""
             for segment in segments:
                 segment.set_color(constants.WHITE)
             for segment in segments2:

@@ -13,14 +13,20 @@ class Snake(Actor):
         _points (int): The number of points the food is worth.
     """
     def __init__(self):
+        """calls the '__init__()' method of the super class (Actor)
+        builds the segment list
+        builds the snake by calling the 'prepare_body()' method"""
         super().__init__()
         self._segments = []
         self._prepare_body()
 
     def get_segments(self):
+        """gets the segments of the snake"""
         return self._segments
 
     def move_next(self):
+        """moves the segments of the snake to the input direction 
+        at the set velocity"""
         # move all segments
         for segment in self._segments:
             segment.move_next()
@@ -32,9 +38,11 @@ class Snake(Actor):
             trailing.set_velocity(velocity)
 
     def get_head(self):
+        """determines which index will be the head of the snake"""
         return self._segments[0]
 
     def grow_tail(self, number_of_segments, color):
+        """grows the snake's tail by adding segments"""
         for i in range(number_of_segments):
             tail = self._segments[-1]
             velocity = tail.get_velocity()
@@ -49,9 +57,11 @@ class Snake(Actor):
             self._segments.append(segment)
 
     def turn_head(self, velocity):
+        """moves the head towards the input direction at the set speed"""
         self._segments[0].set_velocity(velocity)
     
     def _prepare_body(self):
+        """builds the snake's body for the game to start"""
         x = int(constants.MAX_X / 4)
         y = int(constants.MAX_Y / 2)
 
@@ -68,4 +78,5 @@ class Snake(Actor):
             segment.set_color(color)
             self._segments.append(segment)
     def clear_segments(self):
+        """clears all segments from its list"""
         self._segments.clear()
