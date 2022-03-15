@@ -6,7 +6,6 @@ from game.casting.actor import Actor
 from game.scripting.action import Action
 from game.shared.point import Point
 from game.casting.score import Score
-from game.casting.score2 import Score2
 from game.services.keyboard_service import KeyboardService
 from game.casting.cast import Cast
 from game.casting.snake import Snake
@@ -64,11 +63,11 @@ class HandleCollisionsAction(Action):
         for segment in segments:
             if head2.get_position().equals(segment.get_position()):
                 self._is_game_over = True
-                score1.add_points(1)
+                score1.add_points(1,'one')
                 snake.clear_segments()
-                snake._prepare_body()
+                snake._prepare_body(int(constants.MAX_X / 4),int(constants.MAX_Y / 2))
                 player2.clear_segments()
-                player2._prepare_body()
+                player2._prepare_body(int(constants.MAX_X / 2)+int(constants.MAX_X / 4),int(constants.MAX_Y / 2))
                 
         for segment in segments2:
         #     if head2.get_position().equals(segment.get_position()):
@@ -81,11 +80,11 @@ class HandleCollisionsAction(Action):
                 
             if head.get_position().equals(segment.get_position()):
                 self._is_game_over = True 
-                score2.add_points(1)
+                score2.add_points(1,'two')
                 snake.clear_segments()
-                snake._prepare_body()
+                snake._prepare_body(int(constants.MAX_X / 4),int(constants.MAX_Y / 2))
                 player2.clear_segments()
-                player2._prepare_body()
+                player2._prepare_body(int(constants.MAX_X / 2)+int(constants.MAX_X / 4),int(constants.MAX_Y / 2))
                        
 
     def _handle_game_over(self, cast, script):

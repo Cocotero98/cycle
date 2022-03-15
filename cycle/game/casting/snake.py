@@ -12,13 +12,13 @@ class Snake(Actor):
     Attributes:
         _points (int): The number of points the food is worth.
     """
-    def __init__(self):
+    def __init__(self,x,y):
         """calls the '__init__()' method of the super class (Actor)
         builds the segment list
         builds the snake by calling the 'prepare_body()' method"""
         super().__init__()
         self._segments = []
-        self._prepare_body()
+        self._prepare_body(x,y)
 
     def get_segments(self):
         """gets the segments of the snake"""
@@ -60,16 +60,19 @@ class Snake(Actor):
         """moves the head towards the input direction at the set speed"""
         self._segments[0].set_velocity(velocity)
     
-    def _prepare_body(self):
+    def _prepare_body(self,x,y):
         """builds the snake's body for the game to start"""
-        x = int(constants.MAX_X / 4)
-        y = int(constants.MAX_Y / 2)
+        # x = int(constants.MAX_X / 4)
+        # y = int(constants.MAX_Y / 2)
 
         for i in range(constants.SNAKE_LENGTH):
             position = Point(x - i * constants.CELL_SIZE, y)
             velocity = Point(1 * constants.CELL_SIZE, 0)
             text = "8" if i == 0 else "#"
-            color = constants.YELLOW if i == 0 else constants.GREEN
+            if x==int(constants.MAX_X / 4):
+                color = constants.YELLOW if i == 0 else constants.GREEN
+            else:
+                color = constants.YELLOW if i == 0 else constants.BLUE
             
             segment = Actor()
             segment.set_position(position)
